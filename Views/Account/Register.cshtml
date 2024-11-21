@@ -1,0 +1,105 @@
+﻿@model TaskMgntWebApplication.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('https://www.kindpng.com/picc/m/115-1155127_white-pages-download-hd-png-download.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding-top: 15px;
+    }
+
+    button {
+        text-align: center;
+        background-color: navy;
+        color: aliceblue;
+        border-block: solid;
+        border-block-color: darkblue;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: bolder;
+        font-size: larger;
+        width: 200px;
+        height: 40px;
+        margin-left: 40px;
+    }
+
+    form {
+        margin: 20px;
+        padding: 20px;
+        text-align: left;
+    }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: large;
+            /*            align-content: center;*/
+        }
+
+        form input, form select, form button {
+            height: 40px;
+            margin-bottom: 15px;
+            padding: 8px;
+            font-size: 1rem;
+        }
+
+        form input, form select {
+            width: 350px;
+        }
+
+    #responseMessage {
+        display: block;
+        margin-top: 18px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    #Projectmgnt > img {
+        position: absolute;
+        margin-left: 680px;
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+</style>
+<main aria-labelledby="title">
+    @*<h1 id="title">@ViewBag.Title</h1>*@
+
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <h3>Create a new account</h3>
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="row">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="offset-md-2 col-md-10">
+                <input type="submit" value="Register" class="btn btn-outline-dark" />
+            </div>
+        </div>
+    }
+</main>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
